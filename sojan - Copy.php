@@ -1,0 +1,6 @@
+##sojan##
+<?php
+
+phpinfo();
+
+?>
