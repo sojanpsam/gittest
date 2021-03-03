@@ -5,7 +5,7 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
-    - name: "Deploying to Production"       
+    - shell: bash       
       env: 
         SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
       run: |
