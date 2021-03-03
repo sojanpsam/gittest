@@ -7,10 +7,6 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - name: Setup Node.js environment
-              uses: actions/setup-node@v1.4.2
-              with:
-                  node-version: 12.x
             - name: Add SSH key
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
