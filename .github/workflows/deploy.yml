@@ -2,14 +2,15 @@ name: Manually triggered workflow
 on:
   workflow_dispatch:
 jobs:
-  say_hello:
+  deploy-keys:
     runs-on: ubuntu-latest
     steps:
-    - shell: bash       
-      env: 
-        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+    - uses: actions/checkout@v2
+    - name: Setup key      
+      uses: ./
+      with:
+          ssh-private-key: |
+            ${{ secrets.SSH_PRIVATE_KEY }}      
       run: |
-        echo "Test"
-        mkdir .ssh
-        echo "$SSH_KEY" > .ssh/id_rsa
-        cat .ssh/id_rsa
+        ssh -T pbor5wu32tpvs@git.us-5.magento.cloud
+
