@@ -5,7 +5,11 @@ jobs:
   say_hello:
     runs-on: ubuntu-latest
     steps:
-    - run: |
+    - name: "Deploying to Production"       
+      env: 
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+      run: |
         echo "Test"
-        ls -al
+        mkdir .ssh
+        echo "$SSH_KEY" > .ssh/id_rsa
         cat .ssh/id_rsa
