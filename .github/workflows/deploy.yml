@@ -1,7 +1,6 @@
 name: Manually triggered workflow
 on:
   workflow_dispatch:
-                   branches: [stage]
 jobs:
     build:
         if: github.ref == 'refs/heads/stage'    
@@ -29,3 +28,7 @@ jobs:
                   git config --global user.name "GitHub actions"
                   git clone -b stage git@github.com:sojanpsam/gittest.git magento-code
                   cd magento-code && ls -al
+                  echo "The curren branch is"
+                  git branch
+                  echo "Remote connections are"
+                  git remote -v
