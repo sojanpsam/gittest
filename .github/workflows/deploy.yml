@@ -24,4 +24,8 @@ jobs:
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
               run: |
-                  ssh -T pbor5wu32tpvs@git.us-5.magento.cloud
+                  git config --global user.email "actions@github.com"
+                  git config --global user.name "GitHub actions"
+                  cd $GITHUB_WORKSPACE
+                  git branch
+                  git remote -v    
