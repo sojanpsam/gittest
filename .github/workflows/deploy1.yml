@@ -1,0 +1,34 @@
+name: Manually triggered workflow
+on:
+  workflow_dispatch:
+jobs:
+    build:
+        if: github.ref == 'refs/heads/master'    
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Add SSH key
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  mkdir -p /home/runner/.ssh
+                  # Replace example.com with the hostname of the machine
+                  # you're SSH-ing into
+                  ssh-keyscan git.us-a1.magento.cloud >> /home/runner/.ssh/known_hosts
+                  # DOKKU_SSH_KEY is the name of the repository secret
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
+                  chmod 600 /home/runner/.ssh/github_actions
+                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                  ssh-add /home/runner/.ssh/github_actions
+            - name: Build and deploy
+              env:
+                  SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+              run: |
+                  git config --global user.email "actions@github.com"
+                  git config --global user.name "GitHub actions"
+                  git clone -b stage git@github.com:sojanpsam/gittest.git magento-code
+                  cd magento-code && ls -al
+                  echo "The curren branch is"
+                  git branch
+                  echo "Remote connections are"
+                  git remote -v
