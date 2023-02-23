@@ -20,8 +20,6 @@ jobs:
                   chmod 600 /home/runner/.ssh/github_actions 
                   ssh-agent -a $SSH_AUTH_SOCK > /dev/null 
                   ssh-add /home/runner/.ssh/github_actions
-                  cat /home/runner/.ssh/github_actions
-                  cat /home/runner/.ssh/known_hosts
             - name: Build and deploy
               env:
                   SSH_AUTH_SOCK: /tmp/ssh_agent.sock
