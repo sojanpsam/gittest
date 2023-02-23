@@ -1,4 +1,4 @@
-name: Manually triggered workflow
+name: Main deployment
 on:
   workflow_dispatch:
 jobs:
