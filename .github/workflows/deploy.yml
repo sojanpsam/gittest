@@ -14,7 +14,7 @@ jobs:
                   mkdir -p /home/runner/.ssh
                   # Replace example.com with the hostname of the machine
                   # you're SSH-ing into
-                  # echo "git.us-3.magento.cloud ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDQ9omQ89r7QvjT4EF6hf3KcBlNYDb857/Nc+riMnDCLBXKWUBbreFG/tXYA0L/HS8yBYDQ2gjZ11kcgAK3BO+LHjLxv/EV34zzKAMBA+zQ3jOV6VBcrJ2wbiTIPOiGs1Wp2u4/Rf4K5PyoT9tKwSXPOje50Lcmja8E4CjAVnAzGtjZF2FQikejYUru7CnRn+1HWvMQFdQZ3QCl+zUyJ4lWZTVfYDG+XdSviPQ1gRBTOJ+S708zumzrJ2VAhs5Q7ANraty8mVMe4GTGVYKH8w1eUc9LbB0RYJ/NEnlqJvowvqdQ7lbu+XQzttvXMlPxgysJg35lIEWld3Srg8VGTXxJ" >> /home/runner/.ssh/known_hosts
+                  # echo "${{ secrets.SSH_KNOWN_HOSTS }}" >> /home/runner/.ssh/known_hosts
                   # DOKKU_SSH_KEY is the name of the repository secret
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
                   chmod 600 /home/runner/.ssh/github_actions 
