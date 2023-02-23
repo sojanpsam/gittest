@@ -17,8 +17,7 @@ jobs:
                   ssh-keyscan git.us-3.magento.cloud >> /home/runner/.ssh/known_hosts
                   # DOKKU_SSH_KEY is the name of the repository secret
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > /home/runner/.ssh/github_actions
-                  chmod 600 /home/runner/.ssh/github_actions
-                  ssh-agent -a $SSH_AUTH_SOCK > /dev/null   
+                  chmod 600 /home/runner/.ssh/github_actions  
                   ssh-add /home/runner/.ssh/github_actions
                   cat /home/runner/.ssh/github_actions
                   cat /home/runner/.ssh/known_hosts
